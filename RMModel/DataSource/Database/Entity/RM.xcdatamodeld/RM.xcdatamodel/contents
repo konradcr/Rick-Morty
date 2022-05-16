@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RMCharacter" representedClassName="RMCharacter" syncable="YES">
+        <attribute name="gender" attributeType="String"/>
+        <attribute name="identifier" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="imagePath" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="species" attributeType="String"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RMLocation" inverseName="residents" inverseEntity="RMLocation"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="identifier"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="RMLocation" representedClassName="RMLocation" syncable="YES">
+        <attribute name="dimension" attributeType="String"/>
+        <attribute name="identifier" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+        <relationship name="residents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RMCharacter" inverseName="location" inverseEntity="RMCharacter"/>
+    </entity>
+    <elements>
+        <element name="RMCharacter" positionX="-36" positionY="9" width="128" height="149"/>
+        <element name="RMLocation" positionX="0" positionY="72" width="128" height="104"/>
+    </elements>
+</model>
