@@ -48,6 +48,7 @@ class CharacterImageCollectionViewCell: UICollectionViewCell {
     }
 
     override func prepareForReuse() {
+        super.prepareForReuse()
         imageView?.image = nil
         imageView?.cancelImageLoad()
     }
@@ -68,14 +69,12 @@ class CharacterImageCollectionViewCell: UICollectionViewCell {
         self.imageView = imageView
     }
 
-
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: Constants.imageSize.width),
             imageView.heightAnchor.constraint(equalToConstant: Constants.imageSize.height),
             imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-
+            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
 
@@ -89,4 +88,3 @@ extension CharacterImageCollectionViewCell {
         imageView.loadImage(at: imageURL)
     }
 }
-

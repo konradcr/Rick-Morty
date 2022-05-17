@@ -14,8 +14,8 @@ class LocationCollectionViewCell: UICollectionViewCell {
         static let spacing: CGFloat = 20
         static let cornerRadius: CGFloat = 10
         static let cellHeight: CGFloat = 80
-        static let rmLightBrown: UIColor = UIColor(red: 228/255, green: 167/255, blue: 136/255, alpha: 0.9)
-        static let rmDarkBrown: UIColor = UIColor(red: 124/255, green: 62/255, blue: 29/255, alpha: 0.9)
+        static let rmLightBrown = UIColor(red: 228 / 255, green: 167 / 255, blue: 136 / 255, alpha: 0.9)
+        static let rmDarkBrown = UIColor(red: 124 / 255, green: 62 / 255, blue: 29 / 255, alpha: 0.9)
     }
 
     // MARK: - Properties
@@ -160,4 +160,3 @@ extension LocationCollectionViewCell {
         typeLabel.text = location.type
     }
 }
-

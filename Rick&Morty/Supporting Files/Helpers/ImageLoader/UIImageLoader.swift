@@ -50,4 +50,3 @@ extension UIImageView {
     UIImageLoader.loader.cancel(for: self)
   }
 }
-

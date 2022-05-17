@@ -71,8 +71,10 @@ final class LocationsListViewController: UIViewController {
     }
 
     private func createCollectionLayout() -> UICollectionViewLayout {
-        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
+        let sectionProvider = { (sectionIndex: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            guard let sectionKind = Section(rawValue: sectionIndex) else {
+                return nil
+            }
 
             switch sectionKind {
             case .main:
@@ -95,12 +97,12 @@ final class LocationsListViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
 
     private func setupDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<LocationCollectionViewCell, Location> { (cell, indexPath, location) in
+        let cellRegistration = UICollectionView.CellRegistration<LocationCollectionViewCell, Location> { (cell, _, location) in
             cell.configure(location: location)
         }
 
@@ -140,7 +142,6 @@ extension LocationsListViewController {
     }
 }
 
-
 extension LocationsListViewController: LocationsListViewPresenterDelegate {
     func locationsListViewPresenterStartLoading(_ presenter: LocationsListViewPresenter) {
         activityIndicatorView.startAnimating()
@@ -157,8 +158,6 @@ extension LocationsListViewController: LocationsListViewPresenterDelegate {
     func locationsListViewPresenter(_ presenter: LocationsListViewPresenter, didReceiveError error: Error) {
         navigator.navigate(to: .error(error))
     }
-
-
 }
 
 extension LocationsListViewController: UICollectionViewDelegate {
@@ -185,4 +184,3 @@ extension LocationsListViewController: UICollectionViewDelegate {
         presenter.fetchLocations()
     }
 }
-

@@ -77,8 +77,10 @@ final class EpisodesListViewController: UIViewController {
     }
 
     private func createCollectionLayout() -> UICollectionViewLayout {
-        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
+        let sectionProvider = { (sectionIndex: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            guard let sectionKind = Section(rawValue: sectionIndex) else {
+                return nil
+            }
 
             switch sectionKind {
             case .main:
@@ -101,12 +103,12 @@ final class EpisodesListViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
 
     private func setupDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<EpisodeCollectionViewCell, Episode> { (cell, indexPath, episode) in
+        let cellRegistration = UICollectionView.CellRegistration<EpisodeCollectionViewCell, Episode> { (cell, _, episode) in
             cell.configure(episode: episode)
         }
 
@@ -202,4 +204,3 @@ extension EpisodesListViewController: UICollectionViewDelegate {
         presenter.fetchEpisodes()
     }
 }
-

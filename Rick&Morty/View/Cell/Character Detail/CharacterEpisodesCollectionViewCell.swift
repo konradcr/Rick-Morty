@@ -116,4 +116,3 @@ extension CharacterEpisodesCollectionViewCell {
         episodeLabel.text = episode
     }
 }
-

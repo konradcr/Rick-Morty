@@ -12,7 +12,7 @@ final class CharacterDetailViewController: UIViewController {
     private enum Constants {
         static let layoutMargins = UIEdgeInsets.zero
         static let spacing: CGFloat = 20
-        static let rmLightBlue: UIColor = UIColor(red: 183/255, green: 228/255, blue: 249/255, alpha: 0.3)
+        static let rmLightBlue = UIColor(red: 183 / 255, green: 228 / 255, blue: 249 / 255, alpha: 0.3)
     }
 
     // MARK: - Properties
@@ -78,7 +78,7 @@ final class CharacterDetailViewController: UIViewController {
     }
 
     private func setupConstraints() {
-        let viewsDictionary = ["collectionView" : collectionView!]
+        let viewsDictionary = ["collectionView": collectionView!]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "H:|[collectionView]|",
@@ -91,9 +91,7 @@ final class CharacterDetailViewController: UIViewController {
                                            views: viewsDictionary)
         )
     }
-
 }
-
 
 extension CharacterDetailViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -110,18 +108,22 @@ extension CharacterDetailViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableItem(CharacterImageCollectionViewCell.self, at: indexPath)
             cell.configure(imageURL: imageURL)
             return cell
+
         case .name(let name):
             let cell = collectionView.dequeueReusableItem(TitleNameCollectionViewCell.self, at: indexPath)
             cell.configure(name: name, color: Constants.rmLightBlue)
             return cell
+
         case .badgedDetailed(species: let species, origin: let origin):
             let cell = collectionView.dequeueReusableItem(BadgedDetailCollectionViewCell.self, at: indexPath)
             cell.configure(species: species, origin: origin)
             return cell
+
         case .details(status: let status, type: let type, gender: let gender):
             let cell = collectionView.dequeueReusableItem(CharacterDetailsCollectionViewCell.self, at: indexPath)
             cell.configure(status: status, type: type, gender: gender)
             return cell
+
         case .episodes(let episodes):
             let cell = collectionView.dequeueReusableItem(CharacterEpisodesContainerCollectionViewCell.self, at: indexPath)
             cell.episodes = episodes
@@ -138,8 +140,10 @@ extension CharacterDetailViewController: UICollectionViewDelegateFlowLayout {
         switch sectionKind {
         case .image, .badgedDetailed, .details:
             return UIEdgeInsets(top: 0, left: 20, bottom: 10, right: 20)
+
         case .name:
             return UIEdgeInsets(top: 0, left: 40, bottom: 10, right: 40)
+
         case .episodes:
             return UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         }
@@ -153,22 +157,25 @@ extension CharacterDetailViewController: UICollectionViewDelegateFlowLayout {
         let section = presenter.characterInformations[indexPath.section]
 
         switch section {
-        case .image(_):
+        case .image:
             return CharacterImageCollectionViewCell.size(forWidth: width)
+
         case .name(let name):
             return TitleNameCollectionViewCell.size(width: width, text: name)
+
         case .badgedDetailed(species: let species, origin: let origin):
             return BadgedDetailCollectionViewCell.size(width: width, origin: origin, species: species)
+
         case .details(status: let status, type: let type, gender: let gender):
             return CharacterDetailsCollectionViewCell.size(for: width, status: status, type: type, gender: gender)
-        case .episodes(_):
+
+        case .episodes:
             return CharacterEpisodesContainerCollectionViewCell.size(width: width)
         }
     }
 }
 
 extension CharacterDetailViewController: UICollectionViewDelegate {
-
 }
 
 extension CharacterDetailViewController: CharacterDetailViewPresenterDelegate {
@@ -195,4 +202,3 @@ extension CharacterDetailViewController: CharacterEpisodesContainerCollectionVie
         navigator.navigate(to: .episodeDetail(selectedEpisode))
     }
 }
-

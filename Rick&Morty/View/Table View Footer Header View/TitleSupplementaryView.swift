@@ -14,7 +14,7 @@ final class TitleSupplementaryView: UICollectionReusableView {
     private enum Constants {
         static let layoutMargins = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
         static let separatorHeight: CGFloat = 1
-        static let rmGreen: UIColor = UIColor(red: 105/255, green: 144/255, blue: 53/255, alpha: 1)
+        static let rmGreen = UIColor(red: 105 / 255, green: 144 / 255, blue: 53 / 255, alpha: 1)
     }
 
     private weak var label: UILabel!
@@ -30,7 +30,7 @@ final class TitleSupplementaryView: UICollectionReusableView {
         setupView()
     }
     required init?(coder: NSCoder) {
-        fatalError()
+        fatalError("Failed to init")
     }
 
     override func updateConstraints() {
@@ -72,8 +72,8 @@ extension TitleSupplementaryView {
         let viewsDictionary = ["label": label!,
                                "separator": separator!]
 
-        let metricsDictionary = ["bottomMargin" : layoutMargins.bottom,
-                                 "separatorHeight" : Constants.separatorHeight]
+        let metricsDictionary = ["bottomMargin": layoutMargins.bottom,
+                                 "separatorHeight": Constants.separatorHeight]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "V:|-[label]-(>=bottomMargin)-[separator(separatorHeight)]-|",
@@ -97,4 +97,3 @@ extension TitleSupplementaryView {
         label.text = text
     }
 }
-

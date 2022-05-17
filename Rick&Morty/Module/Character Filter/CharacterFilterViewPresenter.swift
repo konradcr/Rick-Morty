@@ -59,4 +59,3 @@ final class CharacterFilterViewPresenter: Presenter {
         removeFilter(CharacterFilter.allCases[index])
     }
 }
-

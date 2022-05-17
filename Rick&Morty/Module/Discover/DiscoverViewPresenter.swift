@@ -87,6 +87,7 @@ final class DiscoverViewPresenter: Presenter {
                     let numberOfPages = response.info.pages
                     self.charactersPageIndex = Int.random(in: 1...numberOfPages)
                     self.fetchCharacters()
+
                 case .failure(let error):
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveError: error)
                 }
@@ -124,6 +125,7 @@ final class DiscoverViewPresenter: Presenter {
                     self.characters = characters.dropLast(count - 6)
 
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveCharacters: self.characters)
+
                 case .failure(let error):
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveError: error)
                 }
@@ -159,6 +161,7 @@ final class DiscoverViewPresenter: Presenter {
                     self.episodesPageIndex = lastPage
 
                     self.fetchEpisodes()
+
                 case .failure(let error):
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveError: error)
                 }
@@ -196,6 +199,7 @@ final class DiscoverViewPresenter: Presenter {
                     self.episodes = episodes.reversed().dropLast(count - 6)
 
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveEpisodes: self.episodes)
+
                 case .failure(let error):
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveError: error)
                 }
@@ -268,6 +272,7 @@ final class DiscoverViewPresenter: Presenter {
                     self.locations = locations.dropLast(count - 3)
 
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveLocations: self.locations)
+
                 case .failure(let error):
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveError: error)
                 }
@@ -291,4 +296,3 @@ final class DiscoverViewPresenter: Presenter {
         fetchLocationsPagesInfo()
     }
 }
-

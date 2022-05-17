@@ -13,8 +13,8 @@ class LocationDiscoverCollectionViewCell: UICollectionViewCell {
         static let layoutMargin = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         static let spacing: CGFloat = 10
         static let cornerRadius: CGFloat = 10
-        static let rmLightBrown: UIColor = UIColor(red: 228/255, green: 167/255, blue: 136/255, alpha: 0.9)
-        static let rmDarkBrown: UIColor = UIColor(red: 124/255, green: 62/255, blue: 29/255, alpha: 0.9)
+        static let rmLightBrown = UIColor(red: 228 / 255, green: 167 / 255, blue: 136 / 255, alpha: 0.9)
+        static let rmDarkBrown = UIColor(red: 124 / 255, green: 62 / 255, blue: 29 / 255, alpha: 0.9)
     }
 
     // MARK: - Properties
@@ -110,7 +110,7 @@ class LocationDiscoverCollectionViewCell: UICollectionViewCell {
                               "typeLabel": typeLabel!,
                               "dimensionLabel": dimensionLabel!]
 
-        let metricsDictionary = ["spacing" : Constants.spacing]
+        let metricsDictionary = ["spacing": Constants.spacing]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "V:|-[nameLabel]-spacing-[typeLabel]-(>=0)-[dimensionLabel]-|",
@@ -144,4 +144,3 @@ extension LocationDiscoverCollectionViewCell {
         dimensionLabel.text = location.dimension
     }
 }
-

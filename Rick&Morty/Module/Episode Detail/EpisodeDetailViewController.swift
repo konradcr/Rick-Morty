@@ -76,8 +76,11 @@ final class EpisodeDetailViewController: UIViewController {
     }
 
     private func createCollectionLayout() -> UICollectionViewLayout {
-        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
+        let sectionProvider = { (sectionIndex: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            guard let sectionKind = Section(rawValue: sectionIndex) else {
+                return nil
+            }
+
             switch sectionKind {
             case .name:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
@@ -104,9 +107,9 @@ final class EpisodeDetailViewController: UIViewController {
 
                 let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                         heightDimension: .estimated(44))
-                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: headerSize,
-                    elementKind: TitleSupplementaryView.reuseIdentifier, alignment: .top)
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                                elementKind: TitleSupplementaryView.reuseIdentifier,
+                                                                                alignment: .top)
 
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = Constants.spacing
@@ -126,9 +129,9 @@ final class EpisodeDetailViewController: UIViewController {
 
                 let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                         heightDimension: .estimated(44))
-                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: headerSize,
-                    elementKind: TitleSupplementaryView.reuseIdentifier, alignment: .top)
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                                elementKind: TitleSupplementaryView.reuseIdentifier,
+                                                                                alignment: .top)
 
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = Constants.spacing
@@ -142,44 +145,47 @@ final class EpisodeDetailViewController: UIViewController {
     }
 
     private func setupDatasource() {
-        let headerSectionRegistration: UICollectionView.SupplementaryRegistration<TitleSupplementaryView> = UICollectionView.SupplementaryRegistration<TitleSupplementaryView>(elementKind: TitleSupplementaryView.reuseIdentifier) {
-            (supplementaryView, string, indexPath) in
+        let headerSectionRegistration: UICollectionView.SupplementaryRegistration<TitleSupplementaryView> = UICollectionView.SupplementaryRegistration
+        <TitleSupplementaryView>(elementKind: TitleSupplementaryView.reuseIdentifier) { (supplementaryView, _, indexPath) in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
             supplementaryView.configure(text: section.headerTitle)
         }
 
-        let titleCellRegistration = UICollectionView.CellRegistration<TitleNameCollectionViewCell, String> { (cell, indexPath, name) in
+        let titleCellRegistration = UICollectionView.CellRegistration<TitleNameCollectionViewCell, String> { (cell, _, name) in
             cell.configure(name: name, color: .white)
         }
 
-        let detailsCellRegistration = UICollectionView.CellRegistration<EpisodeInfosCollectionViewCell, (episode: String, date: String)> { (cell, indexPath, infos) in
+        let detailsCellRegistration = UICollectionView.CellRegistration<EpisodeInfosCollectionViewCell, (episode: String, date: String)> { (cell, _, infos) in
             cell.configure(episode: infos.episode, date: infos.date)
         }
 
-        let characterCellRegistration = UICollectionView.CellRegistration<CharacterDiscoverCollectionViewCell, Character> { (cell, indexPath, character) in
+        let characterCellRegistration = UICollectionView.CellRegistration<CharacterDiscoverCollectionViewCell, Character> { (cell, _, character) in
             cell.configure(character: character)
         }
 
-        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) {
-            (collectionView, indexPath, item) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource
+        <Section, Item>(collectionView: collectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
 
             switch section {
             case .name:
                 return collectionView.dequeueConfiguredReusableCell(using: titleCellRegistration, for: indexPath, item: item.nameRow)
+
             case .details:
                 return collectionView.dequeueConfiguredReusableCell(using: detailsCellRegistration, for: indexPath, item: item.detailsRow)
+
             case .characters:
                 return collectionView.dequeueConfiguredReusableCell(using: characterCellRegistration, for: indexPath, item: item.charactersRow)
             }
         }
 
-        dataSource.supplementaryViewProvider = { (view, kind, index) in
+        dataSource.supplementaryViewProvider = { (view, _, index) in
             guard let section = Section(rawValue: index.section) else { fatalError("Unknown section") }
 
             switch section {
             case .name:
                 return nil
+
             case .details, .characters:
                 return view.dequeueConfiguredReusableSupplementary(using: headerSectionRegistration, for: index)
             }
@@ -215,7 +221,7 @@ final class EpisodeDetailViewController: UIViewController {
     }
 
     private func setupConstraints() {
-        let viewsDictionary = ["collectionView" : collectionView!]
+        let viewsDictionary = ["collectionView": collectionView!]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "H:|[collectionView]|",
@@ -240,8 +246,10 @@ extension EpisodeDetailViewController {
             switch self {
             case .name:
                 return nil
+
             case .details:
                 return "Details"
+
             case .characters:
                 return "Residents"
             }
@@ -270,6 +278,7 @@ extension EpisodeDetailViewController: UICollectionViewDelegate {
         switch section {
         case .name, .details:
             return
+
         case .characters:
             navigator.navigate(to: .characterDetail(presenter.charactersFromEpisode[indexPath.item]))
         }
@@ -292,7 +301,4 @@ extension EpisodeDetailViewController: EpisodeDetailViewPresenterDelegate {
     func episodeDetailViewPresenter(_ presenter: EpisodeDetailViewPresenter, didReceiveError error: Error) {
         navigator.navigate(to: .error(error))
     }
-
-
 }
-

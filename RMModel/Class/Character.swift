@@ -85,7 +85,8 @@ extension Character.Status: Codable {
         if let status = Character.Status(rawValue: rawString.lowercased()) {
             self = status
         } else {
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid string value: \(rawString)")
+            throw DecodingError.dataCorruptedError(in: container,
+                                                   debugDescription: "Invalid string value: \(rawString)")
         }
     }
 }
@@ -98,7 +99,8 @@ extension Character.Gender: Codable {
         if let gender = Character.Gender(rawValue: rawString.lowercased()) {
             self = gender
         } else {
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid string value: \(rawString)")
+            throw DecodingError.dataCorruptedError(in: container,
+                                                   debugDescription: "Invalid string value: \(rawString)")
         }
     }
 }

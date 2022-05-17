@@ -15,8 +15,8 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         static let imageSize: CGSize = .init(width: 75, height: 75)
         static let spacing: CGFloat = 10
         static let cornerRadius: CGFloat = 10
-        static let rmLightBlue: UIColor = UIColor(red: 183/255, green: 228/255, blue: 249/255, alpha: 0.3)
-        static let rmGreen: UIColor = UIColor(red: 105/255, green: 144/255, blue: 53/255, alpha: 1)
+        static let rmLightBlue = UIColor(red: 183 / 255, green: 228 / 255, blue: 249 / 255, alpha: 0.3)
+        static let rmGreen = UIColor(red: 105 / 255, green: 144 / 255, blue: 53 / 255, alpha: 1)
     }
 
     // MARK: - Properties
@@ -51,6 +51,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     // MARK: - UI Methods
 
     override func prepareForReuse() {
+        super.prepareForReuse()
         imageView?.image = nil
         imageView?.cancelImageLoad()
     }
@@ -164,8 +165,8 @@ class CharacterCollectionViewCell: UICollectionViewCell {
                               "verticalStackView": verticalStackView!,
                               "disclosureIndicator": disclosureIndicator!]
 
-        let metricsDictionary = ["imageHeight" : Constants.imageSize.height,
-                                 "spacing" : CGFloat(20)]
+        let metricsDictionary = ["imageHeight": Constants.imageSize.height,
+                                 "spacing": CGFloat(20)]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "V:[imageView(imageHeight)]",

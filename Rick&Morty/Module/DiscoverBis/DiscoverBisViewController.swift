@@ -134,32 +134,42 @@ final class DiscoverBisViewController: UIViewController {
 }
 
 extension DiscoverBisViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         switch displayedSection[section] {
         case .locations:
             return .init(top: 20, left: 20, bottom: 20, right: 20)
+
         case .characters:
             return .init(top: 20, left: 20, bottom: 20, right: 20)
+
         case .episodes:
             return .init(top: 20, left: 20, bottom: 20, right: 20)
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let inset = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
         let cellMaxWidth = collectionView.bounds.width - (inset.left + inset.right)
 
         switch displayedSection[indexPath.section] {
         case .locations:
             return .init(width: cellMaxWidth - Constants.spacing, height: 200)
+
         case .characters:
             return .init(width: collectionView.bounds.width, height: 220)
+
         case .episodes:
             return .init(width: cellMaxWidth - Constants.spacing, height: 100)
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width = collectionView.bounds.width - (Constants.layoutMargin.left + Constants.layoutMargin.right)
         return CGSize(width: width, height: 80)
     }
@@ -191,7 +201,9 @@ extension DiscoverBisViewController: UICollectionViewDataSource {
         return displayedSection.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
         let section = displayedSection[indexPath.section]
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TitleSupplementaryView.reuseIdentifier, for: indexPath) as! TitleSupplementaryView
         header.configure(text: section.headerTitle)
@@ -202,23 +214,28 @@ extension DiscoverBisViewController: UICollectionViewDataSource {
         switch displayedSection[section] {
         case .characters:
             return 1
+
         case .locations:
             return presenter.locations.count
+
         case .episodes:
             return presenter.episodes.count
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch displayedSection[indexPath.section] {
         case .characters:
             let cell = collectionView.dequeueReusableItem(CharacterContainerCollectionViewCell.self, at: indexPath)
             cell.characters = presenter.characters
             return cell
+
         case .locations:
             let cell = collectionView.dequeueReusableItem(LocationDiscoverCollectionViewCell.self, at: indexPath)
             cell.configure(location: presenter.locations[indexPath.item])
             return cell
+
         case .episodes:
             let cell = collectionView.dequeueReusableItem(EpisodeDiscoverCollectionViewCell.self, at: indexPath)
             cell.configure(episode: presenter.episodes[indexPath.item])
@@ -229,7 +246,6 @@ extension DiscoverBisViewController: UICollectionViewDataSource {
 
 extension DiscoverBisViewController: DiscoverBisViewPresenterDelegate {
     func discoverViewPresenterStartLoading(_ presenter: DiscoverBisViewPresenter) {
-
     }
 
     func discoverViewPresenterFinishedLoading(_ presenter: DiscoverBisViewPresenter) {

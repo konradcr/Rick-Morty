@@ -85,7 +85,7 @@ class LocationInfosCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupConstraints() {
-        let viewsDictionary = ["textView" : textView!]
+        let viewsDictionary = ["textView": textView!]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "H:|[textView]|",
@@ -104,20 +104,20 @@ class LocationInfosCollectionViewCell: UICollectionViewCell {
 
         let typeText = "Type: \(type)"
         let mutableAttributedTypeString = NSMutableAttributedString(string: typeText,
-                                                                attributes: [.font : UIFont.preferredFont(forTextStyle: .body),
-                                                                             .foregroundColor: UIColor.black])
-        mutableAttributedTypeString.addAttributes([.font : UIFont.preferredFont(forTextStyle: .body),
-                                                     .foregroundColor : UIColor.secondaryLabel],
+                                                                    attributes: [.font: UIFont.preferredFont(forTextStyle: .body),
+                                                                                 .foregroundColor: UIColor.black])
+        mutableAttributedTypeString.addAttributes([.font: UIFont.preferredFont(forTextStyle: .body),
+                                                   .foregroundColor: UIColor.secondaryLabel],
                                               range: typeText.nsRange(of: type))
         attributedStrings.append(mutableAttributedTypeString)
 
         let dimensionText = "Dimension: \(dimension)"
         let mutableAttributedDimensionString = NSMutableAttributedString(string: dimensionText,
-                                                                attributes: [.font : UIFont.preferredFont(forTextStyle: .body),
-                                                                             .foregroundColor: UIColor.black])
-        mutableAttributedDimensionString.addAttributes([.font : UIFont.preferredFont(forTextStyle: .body),
-                                                     .foregroundColor : UIColor.secondaryLabel],
-                                              range: dimensionText.nsRange(of: dimension))
+                                                                         attributes: [.font: UIFont.preferredFont(forTextStyle: .body),
+                                                                                      .foregroundColor: UIColor.black])
+        mutableAttributedDimensionString.addAttributes([.font: UIFont.preferredFont(forTextStyle: .body),
+                                                        .foregroundColor: UIColor.secondaryLabel],
+                                                       range: dimensionText.nsRange(of: dimension))
         attributedStrings.append(mutableAttributedDimensionString)
 
         let finalMutableAttributedString = NSMutableAttributedString()
@@ -143,4 +143,3 @@ extension LocationInfosCollectionViewCell {
         textView.attributedText = LocationInfosCollectionViewCell.attributedText(type: type, dimension: dimension)
     }
 }
-

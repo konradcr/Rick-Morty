@@ -9,7 +9,6 @@ import UIKit
 import RMModel
 
 protocol FavoritesListViewPresenterDelegate: AnyObject {
-
 }
 
 final class FavoritesListViewPresenter: Presenter {
@@ -29,11 +28,9 @@ final class FavoritesListViewPresenter: Presenter {
 
     // MARK: - Private Methods
 
-
     // MARK: - Public Methods
 
     func attachView(_ view: FavoritesListViewPresenterDelegate?) {
         self.viewDelegate = view
     }
 }
-

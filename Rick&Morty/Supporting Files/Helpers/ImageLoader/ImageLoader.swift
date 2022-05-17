@@ -20,8 +20,8 @@ class ImageLoader {
 
         let uuid = UUID()
 
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            defer {self.runningRequests.removeValue(forKey: uuid) }
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            defer { self.runningRequests.removeValue(forKey: uuid) }
 
             if let data = data, let image = UIImage(data: data) {
                 self.loadedImages[url] = image
@@ -49,4 +49,3 @@ class ImageLoader {
       runningRequests.removeValue(forKey: uuid)
     }
 }
-

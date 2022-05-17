@@ -116,7 +116,7 @@ class BadgedDetailCollectionViewCell: UICollectionViewCell {
         let viewDictionary = ["speciesStackView": speciesStackView!,
                               "originStackView": originStackView!]
 
-        let metricsDictionary = ["spacing" : Constants.spacing,
+        let metricsDictionary = ["spacing": Constants.spacing,
                                  "stackWidth": Constants.stackWidth]
 
         NSLayoutConstraint.activate(
@@ -153,4 +153,3 @@ extension BadgedDetailCollectionViewCell {
         originLabel.text = origin
     }
 }
-

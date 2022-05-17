@@ -84,7 +84,7 @@ class CharacterDetailsCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupConstraints() {
-        let viewsDictionary = ["textView" : textView!]
+        let viewsDictionary = ["textView": textView!]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "H:|[textView]|",
@@ -103,30 +103,30 @@ class CharacterDetailsCollectionViewCell: UICollectionViewCell {
 
         let statusText = "Status: \(status)"
         let mutableAttributedStatusString = NSMutableAttributedString(string: statusText,
-                                                                attributes: [.font : UIFont.preferredFont(forTextStyle: .body),
-                                                                             .foregroundColor: UIColor.black])
-        mutableAttributedStatusString.addAttributes([.font : UIFont.preferredFont(forTextStyle: .body),
-                                                     .foregroundColor : UIColor.secondaryLabel],
+                                                                      attributes: [.font: UIFont.preferredFont(forTextStyle: .body),
+                                                                                   .foregroundColor: UIColor.black])
+        mutableAttributedStatusString.addAttributes([.font: UIFont.preferredFont(forTextStyle: .body),
+                                                     .foregroundColor: UIColor.secondaryLabel],
                                               range: statusText.nsRange(of: status))
         attributedStrings.append(mutableAttributedStatusString)
 
         if let type = type {
             let typeText = "Type: \(type)"
             let mutableAttributedTypeString = NSMutableAttributedString(string: typeText,
-                                                                    attributes: [.font : UIFont.preferredFont(forTextStyle: .body),
-                                                                                 .foregroundColor: UIColor.black])
-            mutableAttributedTypeString.addAttributes([.font : UIFont.preferredFont(forTextStyle: .body),
-                                                       .foregroundColor : UIColor.secondaryLabel],
+                                                                        attributes: [.font: UIFont.preferredFont(forTextStyle: .body),
+                                                                                     .foregroundColor: UIColor.black])
+            mutableAttributedTypeString.addAttributes([.font: UIFont.preferredFont(forTextStyle: .body),
+                                                       .foregroundColor: UIColor.secondaryLabel],
                                                   range: typeText.nsRange(of: type))
             attributedStrings.append(mutableAttributedTypeString)
         }
 
         let genderText = "Gender: \(gender)"
         let mutableAttributedGenderString = NSMutableAttributedString(string: genderText,
-                                                                attributes: [.font : UIFont.preferredFont(forTextStyle: .body),
-                                                                             .foregroundColor: UIColor.black])
-        mutableAttributedGenderString.addAttributes([.font : UIFont.preferredFont(forTextStyle: .body),
-                                                     .foregroundColor : UIColor.secondaryLabel],
+                                                                      attributes: [.font: UIFont.preferredFont(forTextStyle: .body),
+                                                                                   .foregroundColor: UIColor.black])
+        mutableAttributedGenderString.addAttributes([.font: UIFont.preferredFont(forTextStyle: .body),
+                                                     .foregroundColor: UIColor.secondaryLabel],
                                               range: genderText.nsRange(of: gender))
         attributedStrings.append(mutableAttributedGenderString)
 
@@ -150,7 +150,8 @@ class CharacterDetailsCollectionViewCell: UICollectionViewCell {
 
 extension CharacterDetailsCollectionViewCell {
     func configure(status: String, type: String?, gender: String) {
-        textView.attributedText = CharacterDetailsCollectionViewCell.attributedText(status: status, type: type, gender: gender)
+        textView.attributedText = CharacterDetailsCollectionViewCell.attributedText(status: status,
+                                                                                    type: type,
+                                                                                    gender: gender)
     }
 }
-

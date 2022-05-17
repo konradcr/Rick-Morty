@@ -10,7 +10,6 @@ import RMModel
 
 final class FavoritesListViewController: UIViewController {
     private enum Constants {
-
     }
 
     private let presenter: FavoritesListViewPresenter
@@ -31,7 +30,5 @@ final class FavoritesListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 }
-

@@ -11,8 +11,10 @@ import RMModel
 protocol LocationDetailViewPresenterDelegate: AnyObject {
     func locationDetailViewPresenterStartLoading(_ presenter: LocationDetailViewPresenter)
     func locationDetailViewPresenterFinishedLoading(_ presenter: LocationDetailViewPresenter)
-    func locationDetailViewPresenter(_ presenter: LocationDetailViewPresenter, didReceiveCharacters characters: [Character])
-    func locationDetailViewPresenter(_ presenter: LocationDetailViewPresenter, didReceiveError error: Error)
+    func locationDetailViewPresenter(_ presenter: LocationDetailViewPresenter,
+                                     didReceiveCharacters characters: [Character])
+    func locationDetailViewPresenter(_ presenter: LocationDetailViewPresenter,
+                                     didReceiveError error: Error)
 }
 
 final class LocationDetailViewPresenter: Presenter {
@@ -94,7 +96,9 @@ final class LocationDetailViewPresenter: Presenter {
                 switch result {
                 case .success(let response):
                     self.charactersFromLocation = response
-                    self.viewDelegate?.locationDetailViewPresenter(self, didReceiveCharacters: self.charactersFromLocation)
+                    self.viewDelegate?.locationDetailViewPresenter(self,
+                                                                   didReceiveCharacters: self.charactersFromLocation)
+
                 case .failure(let error):
                     self.viewDelegate?.locationDetailViewPresenter(self, didReceiveError: error)
                 }
@@ -106,4 +110,3 @@ final class LocationDetailViewPresenter: Presenter {
         DispatchQueue.main.async(execute: charactersWorkItem)
     }
 }
-

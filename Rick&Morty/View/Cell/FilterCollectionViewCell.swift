@@ -10,7 +10,7 @@ import UIKit
 final class FilterCollectionViewCell: UICollectionViewCell {
     private enum Constants {
         static let layoutMargins = UIEdgeInsets(top: 8, left: 15, bottom: 8, right: 15)
-        static let rmGreen: UIColor = UIColor(red: 105/255, green: 144/255, blue: 53/255, alpha: 1)
+        static let rmGreen = UIColor(red: 105 / 255, green: 144 / 255, blue: 53 / 255, alpha: 1)
     }
 
     static func size(for width: CGFloat, text: String) -> CGSize {
@@ -20,7 +20,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         let cellWidth = width - horizontalMargins
 
         let textSize = NSAttributedString(string: text,
-                                          attributes: [.font : UIFont.preferredFont(forTextStyle: .body)])
+                                          attributes: [.font: UIFont.preferredFont(forTextStyle: .body)])
             .boundingRect(with: .init(width: cellWidth,
                                       height: .greatestFiniteMagnitude),
                           options: .usesLineFragmentOrigin,
@@ -63,7 +63,6 @@ final class FilterCollectionViewCell: UICollectionViewCell {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 15
 
-
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.numberOfLines = 0
@@ -86,7 +85,7 @@ final class FilterCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupConstraints() {
-        let viewsDictionary = ["label" : label!]
+        let viewsDictionary = ["label": label!]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "H:|-[label]-|",
@@ -119,4 +118,3 @@ extension FilterCollectionViewCell {
         label.text = text
     }
 }
-

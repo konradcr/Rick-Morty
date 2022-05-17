@@ -82,7 +82,7 @@ class EpisodeDiscoverCollectionViewCell: UICollectionViewCell {
         backgroundImage.image = UIImage(systemName: "tv", withConfiguration: backgroundConfig)
         backgroundImage.contentMode = .scaleAspectFit
         backgroundView = backgroundImage
-        backgroundView?.center = CGPoint(x: 3*contentView.frame.width/4, y: contentView.frame.height/2)
+        backgroundView?.center = CGPoint(x: 3 * contentView.frame.width / 4, y: contentView.frame.height / 2)
 
         [nameLabel,
          airDateLabel,
@@ -143,4 +143,3 @@ extension EpisodeDiscoverCollectionViewCell {
         episodeLabel.text = episode.episode
     }
 }
-

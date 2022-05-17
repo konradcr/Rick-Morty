@@ -14,8 +14,8 @@ class CharacterDiscoverCollectionViewCell: UICollectionViewCell {
         static let imageHeight: CGFloat = 110
         static let spacing: CGFloat = 10
         static let cornerRadius: CGFloat = 10
-        static let rmLightBlue: UIColor = UIColor(red: 183/255, green: 228/255, blue: 249/255, alpha: 0.3)
-        static let rmGreen: UIColor = UIColor(red: 105/255, green: 144/255, blue: 53/255, alpha: 1)
+        static let rmLightBlue = UIColor(red: 183 / 255, green: 228 / 255, blue: 249 / 255, alpha: 0.3)
+        static let rmGreen = UIColor(red: 105 / 255, green: 144 / 255, blue: 53 / 255, alpha: 1)
     }
 
     // MARK: - Properties
@@ -47,6 +47,7 @@ class CharacterDiscoverCollectionViewCell: UICollectionViewCell {
     // MARK: - UI Methods
 
     override func prepareForReuse() {
+        super.prepareForReuse()
         imageView?.image = nil
         imageView?.cancelImageLoad()
     }
@@ -151,8 +152,8 @@ class CharacterDiscoverCollectionViewCell: UICollectionViewCell {
         let viewDictionary = ["imageView": imageView!,
                               "verticalStackView": verticalStackView!]
 
-        let metricsDictionary = ["imageHeight" : Constants.imageHeight,
-                                 "spacing" : Constants.spacing]
+        let metricsDictionary = ["imageHeight": Constants.imageHeight,
+                                 "spacing": Constants.spacing]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-spacing-[verticalStackView]-|",
@@ -185,4 +186,3 @@ extension CharacterDiscoverCollectionViewCell {
         speciesLabel.text = character.species
     }
 }
-

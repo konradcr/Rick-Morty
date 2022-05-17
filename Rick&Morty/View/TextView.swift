@@ -25,4 +25,3 @@ final class TextView: UITextView {
         return nil
     }
 }
-

@@ -67,7 +67,7 @@ final class CharacterDetailViewPresenter: Presenter {
         characterInformations.append(.name(character.name))
         characterInformations.append(.badgedDetailed(species: character.species, origin: character.origin.name))
 
-        if character.type.isEmpty  {
+        if character.type.isEmpty {
             characterInformations.append(.details(status: character.status.rawValue.capitalized, type: nil, gender: character.gender.rawValue.capitalized))
         } else {
             characterInformations.append(.details(status: character.status.rawValue.capitalized, type: character.type, gender: character.gender.rawValue.capitalized))
@@ -114,6 +114,7 @@ final class CharacterDetailViewPresenter: Presenter {
                 case .success(let response):
                     self.episodesFromCharacter = response
                     self.viewDelegate?.characterDetailViewPresenter(self, didReceiveEpisodes: self.episodesFromCharacter)
+
                 case .failure(let error):
                     self.viewDelegate?.characterDetailViewPresenter(self, didReceiveError: error)
                 }
@@ -125,5 +126,3 @@ final class CharacterDetailViewPresenter: Presenter {
         DispatchQueue.main.async(execute: episodesWorkItem)
     }
 }
-
-

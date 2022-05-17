@@ -81,7 +81,7 @@ class CharacterEpisodesContainerCollectionViewCell: UICollectionViewCell {
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
 
@@ -129,4 +129,3 @@ extension CharacterEpisodesContainerCollectionViewCell: UICollectionViewDataSour
         return cell
     }
 }
-

@@ -59,4 +59,3 @@ final class EpisodeFilterViewPresenter: Presenter {
         removeFilter(EpisodeFilter.allCases[index])
     }
 }
-

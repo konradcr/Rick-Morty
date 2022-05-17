@@ -71,8 +71,10 @@ final class CharactersListViewController: UIViewController {
     }
 
     private func createCollectionLayout() -> UICollectionViewLayout {
-        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
+        let sectionProvider = { (sectionIndex: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            guard let sectionKind = Section(rawValue: sectionIndex) else {
+                return nil
+            }
 
             switch sectionKind {
             case .main:
@@ -95,12 +97,12 @@ final class CharactersListViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
 
     private func setupDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<CharacterCollectionViewCell, Character> { (cell, indexPath, character) in
+        let cellRegistration = UICollectionView.CellRegistration<CharacterCollectionViewCell, Character> { (cell, _, character) in
             cell.configure(character: character)
         }
 
@@ -182,4 +184,3 @@ extension CharactersListViewController: UICollectionViewDelegate {
         presenter.fetchCharacters()
     }
 }
-

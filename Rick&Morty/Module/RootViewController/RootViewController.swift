@@ -135,7 +135,6 @@ extension RootNavigator: Navigator {
     }
 }
 
-
 extension UIViewController {
     var topMostViewController: UIViewController {
         guard let presentedViewController = presentedViewController else {
@@ -145,4 +144,3 @@ extension UIViewController {
         return presentedViewController.topMostViewController
     }
 }
-

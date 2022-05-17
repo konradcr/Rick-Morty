@@ -110,7 +110,6 @@ final class ViewControllerFactory {
     }
 }
 
-
 extension ViewControllerFactory {
     func errorAlert(error: Error) -> UIViewController {
         let ac = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
@@ -118,4 +117,3 @@ extension ViewControllerFactory {
         return ac
     }
 }
-

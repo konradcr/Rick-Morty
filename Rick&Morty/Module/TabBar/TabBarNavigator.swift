@@ -32,4 +32,3 @@ final class TabBarNavigator: Navigator {
         fatalError("Shouldn't call this method directly")
     }
 }
-

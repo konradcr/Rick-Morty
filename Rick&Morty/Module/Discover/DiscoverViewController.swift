@@ -103,8 +103,10 @@ extension DiscoverViewController {
     }
 
     private func createCollectionLayout() -> UICollectionViewLayout {
-        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
+        let sectionProvider = { (sectionIndex: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            guard let sectionKind = Section(rawValue: sectionIndex) else {
+                return nil
+            }
 
             switch sectionKind {
             case .characters:
@@ -119,9 +121,9 @@ extension DiscoverViewController {
 
                 let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                         heightDimension: .estimated(44))
-                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: headerSize,
-                    elementKind: TitleMoreSupplementaryView.reuseIdentifier, alignment: .top)
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                                elementKind: TitleMoreSupplementaryView.reuseIdentifier,
+                                                                                alignment: .top)
 
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = Constants.spacing
@@ -188,48 +190,50 @@ extension DiscoverViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
 }
 
 extension DiscoverViewController {
     private func setupDatasource() {
-        let headerSectionRegistration: UICollectionView.SupplementaryRegistration<TitleMoreSupplementaryView> = UICollectionView.SupplementaryRegistration<TitleMoreSupplementaryView>(elementKind: TitleMoreSupplementaryView.reuseIdentifier) {
-            (supplementaryView, string, indexPath) in
+        let headerSectionRegistration: UICollectionView.SupplementaryRegistration<TitleMoreSupplementaryView> = UICollectionView.SupplementaryRegistration
+        <TitleMoreSupplementaryView>(elementKind: TitleMoreSupplementaryView.reuseIdentifier) { (supplementaryView, _, indexPath) in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
             supplementaryView.configure(text: section.headerTitle)
             supplementaryView.delegate = self
             supplementaryView.indexPath = indexPath
         }
 
-        let characterCellRegistration = UICollectionView.CellRegistration<CharacterDiscoverCollectionViewCell, Character> { (cell, indexPath, character) in
+        let characterCellRegistration = UICollectionView.CellRegistration<CharacterDiscoverCollectionViewCell, Character> { (cell, _, character) in
             cell.configure(character: character)
         }
 
-        let episodeCellRegistration = UICollectionView.CellRegistration<EpisodeDiscoverCollectionViewCell, Episode> { (cell, indexPath, episode) in
+        let episodeCellRegistration = UICollectionView.CellRegistration<EpisodeDiscoverCollectionViewCell, Episode> { (cell, _, episode) in
             cell.configure(episode: episode)
         }
 
-        let locationCellRegistration = UICollectionView.CellRegistration<LocationDiscoverCollectionViewCell, Location> { (cell, indexPath, location) in
+        let locationCellRegistration = UICollectionView.CellRegistration<LocationDiscoverCollectionViewCell, Location> { (cell, _, location) in
             cell.configure(location: location)
         }
 
-        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) {
-            (collectionView, indexPath, item) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource
+        <Section, Item>(collectionView: collectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
 
             switch section {
             case .characters:
                 return collectionView.dequeueConfiguredReusableCell(using: characterCellRegistration, for: indexPath, item: item.character)
+
             case .episodes:
                 return collectionView.dequeueConfiguredReusableCell(using: episodeCellRegistration, for: indexPath, item: item.episode)
+
             case .locations:
                 return collectionView.dequeueConfiguredReusableCell(using: locationCellRegistration, for: indexPath, item: item.location)
             }
         }
 
-        dataSource.supplementaryViewProvider = { (view, kind, index) in
+        dataSource.supplementaryViewProvider = { (view, _, index) in
             return view.dequeueConfiguredReusableSupplementary(using: headerSectionRegistration, for: index)
         }
 
@@ -275,9 +279,11 @@ extension DiscoverViewController: UICollectionViewDelegate {
         case .locations:
             let location = presenter.locations[indexPath.item]
             navigator.navigate(to: .locationDetail(location))
+
         case .characters:
             let character = presenter.characters[indexPath.item]
             navigator.navigate(to: .characterDetail(character))
+
         case .episodes:
             let episode = presenter.episodes[indexPath.item]
             navigator.navigate(to: .episodeDetail(episode))
@@ -322,11 +328,12 @@ extension DiscoverViewController: TitleMoreSupplementaryViewDelegate {
         switch section {
         case .locations:
             navigator.navigate(to: .locationsList)
+
         case .characters:
             navigator.navigate(to: .charactersList)
+
         case .episodes:
             navigator.navigate(to: .episodesList)
         }
     }
 }
-

@@ -12,4 +12,3 @@ protocol Presenter: AnyObject {
 
     func attachView(_ view: ViewDelegate?)
 }
-

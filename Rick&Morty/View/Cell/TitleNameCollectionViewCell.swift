@@ -12,7 +12,7 @@ class TitleNameCollectionViewCell: UICollectionViewCell {
         static let layoutMargins = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         static let spacing: CGFloat = 10
         static let cornerRadius: CGFloat = 10
-        static let rmGreen: UIColor = UIColor(red: 105/255, green: 144/255, blue: 53/255, alpha: 1)
+        static let rmGreen = UIColor(red: 105 / 255, green: 144 / 255, blue: 53 / 255, alpha: 1)
     }
 
     static func size(width: CGFloat, text: String) -> CGSize {
@@ -85,7 +85,7 @@ class TitleNameCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupConstraints() {
-        let viewsDictionary = ["nameLabel" : nameLabel!]
+        let viewsDictionary = ["nameLabel": nameLabel!]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "V:|-[nameLabel]-|",

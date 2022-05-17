@@ -80,6 +80,7 @@ final class EpisodeDetailViewPresenter: Presenter {
                 case .success(let response):
                     self.charactersFromEpisode = response
                     self.viewDelegate?.episodeDetailViewPresenter(self, didReceiveCharacters: self.charactersFromEpisode)
+
                 case .failure(let error):
                     self.viewDelegate?.episodeDetailViewPresenter(self, didReceiveError: error)
                 }
@@ -91,4 +92,3 @@ final class EpisodeDetailViewPresenter: Presenter {
         DispatchQueue.main.async(execute: charactersWorkItem)
     }
 }
-

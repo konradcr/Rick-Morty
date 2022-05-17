@@ -73,8 +73,10 @@ final class EpisodeFilterViewController: UIViewController {
     }
 
     private func createCollectionLayout() -> UICollectionViewLayout {
-        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
+        let sectionProvider = { (sectionIndex: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            guard let sectionKind = Section(rawValue: sectionIndex) else {
+                return nil
+            }
 
             switch sectionKind {
             case .season:
@@ -85,9 +87,9 @@ final class EpisodeFilterViewController: UIViewController {
                 group.interItemSpacing = .fixed(Constants.spacing)
                 let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                         heightDimension: .estimated(30))
-                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: headerSize,
-                    elementKind: TitleSupplementaryView.reuseIdentifier, alignment: .top)
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                                elementKind: TitleSupplementaryView.reuseIdentifier,
+                                                                                alignment: .top)
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = Constants.spacing
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20)
@@ -99,18 +101,18 @@ final class EpisodeFilterViewController: UIViewController {
     }
 
     private func setupDataSource() {
-        let headerSectionRegistration: UICollectionView.SupplementaryRegistration<TitleSupplementaryView> = UICollectionView.SupplementaryRegistration<TitleSupplementaryView>(elementKind: TitleSupplementaryView.reuseIdentifier) {
-            (supplementaryView, string, indexPath) in
+        let headerSectionRegistration: UICollectionView.SupplementaryRegistration<TitleSupplementaryView> = UICollectionView.SupplementaryRegistration
+        <TitleSupplementaryView>(elementKind: TitleSupplementaryView.reuseIdentifier) { (supplementaryView, _, indexPath) in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
             supplementaryView.configure(text: section.headerTitle)
         }
 
-        let cellRegistration = UICollectionView.CellRegistration<FilterCollectionViewCell, EpisodeFilter> { (cell, indexPath, filter) in
+        let cellRegistration = UICollectionView.CellRegistration<FilterCollectionViewCell, EpisodeFilter> { (cell, _, filter) in
             cell.configure(text: filter.name)
         }
 
-        dataSource = UICollectionViewDiffableDataSource<Section, EpisodeFilter>(collectionView: collectionView) {
-            (collectionView, indexPath, item) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource
+        <Section, EpisodeFilter>(collectionView: collectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else {
                 fatalError("Unknown section")
             }
@@ -121,7 +123,7 @@ final class EpisodeFilterViewController: UIViewController {
             }
         }
 
-        dataSource.supplementaryViewProvider = { (view, kind, index) in
+        dataSource.supplementaryViewProvider = { (view, _, index) in
             return view.dequeueConfiguredReusableSupplementary(using: headerSectionRegistration, for: index)
         }
 
@@ -141,7 +143,7 @@ final class EpisodeFilterViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
 }
@@ -181,4 +183,3 @@ extension EpisodeFilterViewController: EpisodeFilterViewPresenterDelegate {
         delegate?.episodeFilterViewController(self, didRemoveFilter: filter)
     }
 }
-

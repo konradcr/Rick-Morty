@@ -98,6 +98,7 @@ final class CharactersListViewPresenter: Presenter {
                     self.hasUpcomingPage = response.info.next != nil
 
                     self.viewDelegate?.charactersListViewPresenter(self, didReceiveCharacters: self.characters)
+
                 case .failure(let error):
                     self.viewDelegate?.charactersListViewPresenter(self, didReceiveError: error)
                 }
@@ -109,4 +110,3 @@ final class CharactersListViewPresenter: Presenter {
         DispatchQueue.main.async(execute: charactersWorkItem)
     }
 }
-

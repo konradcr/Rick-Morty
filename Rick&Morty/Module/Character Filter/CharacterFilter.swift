@@ -14,4 +14,3 @@ enum CharacterFilter: CaseIterable, Equatable {
     case gender(Character.Gender)
     case status(Character.Status)
 }
-

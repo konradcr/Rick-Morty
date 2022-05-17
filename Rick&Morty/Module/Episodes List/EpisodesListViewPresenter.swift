@@ -40,7 +40,7 @@ final class EpisodesListViewPresenter: Presenter {
         }
     }
 
-    private(set) var selectedFilter: EpisodeFilter? = nil {
+    private(set) var selectedFilter: EpisodeFilter? {
         didSet {
             viewDelegate?.episodesListViewPresenter(self, didEnableFilter: isFilterEnable)
             reloadEpisodes()
@@ -55,7 +55,6 @@ final class EpisodesListViewPresenter: Presenter {
     var isFilterEnable: Bool {
         return selectedFilter != nil
     }
-
 
     // MARK: - Initializers
 
@@ -114,6 +113,7 @@ final class EpisodesListViewPresenter: Presenter {
                     self.hasUpcomingPage = response.info.next != nil
 
                     self.viewDelegate?.episodesListViewPresenter(self, didReceiveEpisodes: self.episodes)
+
                 case .failure(let error):
                     self.viewDelegate?.episodesListViewPresenter(self, didReceiveError: error)
                 }
@@ -154,6 +154,7 @@ final class EpisodesListViewPresenter: Presenter {
                     self.hasUpcomingPage = response.info.next != nil
 
                     self.viewDelegate?.episodesListViewPresenter(self, didReceiveEpisodes: self.episodes)
+
                 case .failure(let error):
                     self.viewDelegate?.episodesListViewPresenter(self, didReceiveError: error)
                 }
@@ -181,4 +182,3 @@ final class EpisodesListViewPresenter: Presenter {
         selectedFilter = nil
     }
 }
-

@@ -18,4 +18,3 @@ final class TabBarPresenter: Presenter {
         self.viewDelegate = view
     }
 }
-

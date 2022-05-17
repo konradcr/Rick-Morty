@@ -85,7 +85,7 @@ class EpisodeInfosCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupConstraints() {
-        let viewsDictionary = ["textView" : textView!]
+        let viewsDictionary = ["textView": textView!]
 
         NSLayoutConstraint.activate(
             NSLayoutConstraint.constraints(withVisualFormat: "H:|[textView]|",
@@ -104,20 +104,20 @@ class EpisodeInfosCollectionViewCell: UICollectionViewCell {
 
         let episodeText = "Episode: \(episode)"
         let mutableAttributedEpisodeString = NSMutableAttributedString(string: episodeText,
-                                                                attributes: [.font : UIFont.preferredFont(forTextStyle: .body),
-                                                                             .foregroundColor: UIColor.black])
-        mutableAttributedEpisodeString.addAttributes([.font : UIFont.preferredFont(forTextStyle: .body),
-                                                     .foregroundColor : UIColor.secondaryLabel],
-                                              range: episodeText.nsRange(of: episode))
+                                                                       attributes: [.font: UIFont.preferredFont(forTextStyle: .body),
+                                                                                    .foregroundColor: UIColor.black])
+        mutableAttributedEpisodeString.addAttributes([.font: UIFont.preferredFont(forTextStyle: .body),
+                                                      .foregroundColor: UIColor.secondaryLabel],
+                                                     range: episodeText.nsRange(of: episode))
         attributedStrings.append(mutableAttributedEpisodeString)
 
         let dateText = "Date: \(date)"
         let mutableAttributedDateString = NSMutableAttributedString(string: dateText,
-                                                                attributes: [.font : UIFont.preferredFont(forTextStyle: .body),
-                                                                             .foregroundColor: UIColor.black])
-        mutableAttributedDateString.addAttributes([.font : UIFont.preferredFont(forTextStyle: .body),
-                                                     .foregroundColor : UIColor.secondaryLabel],
-                                              range: dateText.nsRange(of: date))
+                                                                    attributes: [.font: UIFont.preferredFont(forTextStyle: .body),
+                                                                                 .foregroundColor: UIColor.black])
+        mutableAttributedDateString.addAttributes([.font: UIFont.preferredFont(forTextStyle: .body),
+                                                   .foregroundColor: UIColor.secondaryLabel],
+                                                  range: dateText.nsRange(of: date))
         attributedStrings.append(mutableAttributedDateString)
 
         let finalMutableAttributedString = NSMutableAttributedString()
@@ -143,4 +143,3 @@ extension EpisodeInfosCollectionViewCell {
         textView.attributedText = EpisodeInfosCollectionViewCell.attributedText(episode: episode, date: date)
     }
 }
-

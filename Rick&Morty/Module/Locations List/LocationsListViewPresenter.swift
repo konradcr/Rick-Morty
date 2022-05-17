@@ -98,6 +98,7 @@ final class LocationsListViewPresenter: Presenter {
                     self.hasUpcomingPage = response.info.next != nil
 
                     self.viewDelegate?.locationsListViewPresenter(self, didReceiveLocations: self.locations)
+
                 case .failure(let error):
                     self.viewDelegate?.locationsListViewPresenter(self, didReceiveError: error)
                 }
@@ -109,4 +110,3 @@ final class LocationsListViewPresenter: Presenter {
         DispatchQueue.main.async(execute: locationsWorkItem)
     }
 }
-

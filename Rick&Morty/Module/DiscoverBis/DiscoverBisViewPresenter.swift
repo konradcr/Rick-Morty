@@ -88,6 +88,7 @@ final class DiscoverBisViewPresenter: Presenter {
                     }
 
                     self.viewDelegate?.discoverViewPresenterdidReceiveCharacters(self)
+
                 case .failure(let error):
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveError: error)
                 }
@@ -126,6 +127,7 @@ final class DiscoverBisViewPresenter: Presenter {
                         episodes.remove(at: 0)
                     }
                     self.viewDelegate?.discoverViewPresenterdidReceiveEpisodes(self)
+
                 case .failure(let error):
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveError: error)
                 }
@@ -165,6 +167,7 @@ final class DiscoverBisViewPresenter: Presenter {
                     }
 
                     self.viewDelegate?.discoverViewPresenterdidReceiveLocations(self)
+
                 case .failure(let error):
                     self.viewDelegate?.discoverViewPresenter(self, didReceiveError: error)
                 }

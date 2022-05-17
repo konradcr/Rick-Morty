@@ -67,7 +67,7 @@ class CharacterContainerCollectionViewCell: UICollectionViewCell {
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
 
@@ -88,7 +88,7 @@ class CharacterContainerCollectionViewCell: UICollectionViewCell {
 extension CharacterContainerCollectionViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellMaxWidth = collectionView.bounds.width - (Constants.cellMargins.left + Constants.cellMargins.right)
-        return .init(width: cellMaxWidth/2 - Constants.spacing, height: 200)
+        return .init(width: cellMaxWidth / 2 - Constants.spacing, height: 200)
     }
 }
 
